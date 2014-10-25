@@ -46,6 +46,21 @@
 			</div>
 		</div>
 
+		<div id="pager" class="pager" style="position: relative;">
+			<form>
+				<img src="../addons/pager/icons/first.png" class="first">
+				<img src="../addons/pager/icons/prev.png" class="prev">
+				<input type="text" class="pagedisplay">
+				<img src="../addons/pager/icons/next.png" class="next">
+				<img src="../addons/pager/icons/last.png" class="last">
+				<select class="pagesize">
+					<option selected="selected" value="10">10</option>
+					<option value="20">20</option>
+					<option value="30">30</option>
+					<option value="40">40</option>
+				</select>
+			</form>
+		</div>
 		<div id="table">
 			<table id="dataTable" class="tablesorter"> 
 				<thead>
@@ -88,26 +103,12 @@
 					</tr>
 				</tbody>
 			</table>
-			<div id="pager" class="pager" style="top: 687px; position: absolute;">
-				<form>
-					<img src="../addons/pager/icons/first.png" class="first">
-					<img src="../addons/pager/icons/prev.png" class="prev">
-					<input type="text" class="pagedisplay">
-					<img src="../addons/pager/icons/next.png" class="next">
-					<img src="../addons/pager/icons/last.png" class="last">
-					<select class="pagesize">
-						<option selected="selected" value="10">10</option>
-						<option value="20">20</option>
-						<option value="30">30</option>
-						<option value="40">40</option>
-					</select>
-				</form>
-			</div>
 		</div>
+
 
 		<script src="https://maps.googleapis.com/maps/api/js?v=3.exp&sensor=false&language=en"></script>
         <script src="src/lib/markerclusterer.js"></script>
-        <script src="src/lib/jquery-2.1.1.min.js"></script>
+        <script src="src/lib/jquery-1.7.2.js"></script>
         <script src="src/lib/infobox.js"></script>
         <script src="src/lib/jquery.tablesorter.min.js"></script>
         <script src="src/lib/jquery.tablesorter.pager.js"></script>
