@@ -9,49 +9,81 @@
 		<link rel="stylesheet" href="assets/css/styles.css">
 	</head>
 	<body>
-
-		<nav class="navbar navbar-default" role="navigation">
-			<div class="navbar-header">
-				<a class="navbar-brand" href="#">Brand</a>
-			</div>
-		</nav>
-
 		<div id="map"></div>
+		<div id="container">
+	        <form>
+				<div class="form-group">
+					<label for="csv-input">CSV File</label>
+					<input type="file" class="form-control" id="csv-input">
+				</div>
+				<div class="form-group">
+					<label for="nuts3Code">NUTS3 Code</label>
+					<input type="text" class="form-control" id="nuts3Code" placeholder="Enter nuts3 code">
+				</div>
+		        <button type="submit" class="btn btn-default">Submit</button>
+			</form>
 
-		<div class="row">
-			<div class="col-md-4 spacing">
-        <div class="form-group">
-          <label for="csv-input">CSV File</label>
-          <input type="file" class="form-control" id="csv-input">
-        </div>
+			<div class="infobox-wrapper">
+				<div id="infobox">
+					The contents of your info box. It's very easy to create and customize.
+				</div>
+			</div>
 
-        <form>
-					<div class="form-group">
-						<label for="nuts3Code">NUTS3 Code</label>
-						<input type="text" class="form-control" id="nuts3Code" placeholder="Enter nuts3 code">
-					</div>
-			        <button type="submit" class="btn btn-default">Submit</button>
-				</form>
-			</div>
-			<div class="col-md-8">
-			</div>
+			<table id="dataTable" class="tablesorter"> 
+				<thead>
+					<tr>
+						<th>Last Name</th>
+						<th>First Name</th>
+						<th>Email</th>
+						<th>Due</th>
+						<th>Web Site</th>
+					</tr>
+				</thead>
+				<tbody>
+					<tr>
+						<td>Smith</td>
+						<td>John</td>
+						<td>jsmith@gmail.com</td>
+						<td>$50.00</td>
+						<td>http://www.jsmith.com</td>
+					</tr>
+					<tr>
+						<td>Bach</td>
+						<td>Frank</td>
+						<td>fbach@yahoo.com</td>
+						<td>$50.00</td>
+						<td>http://www.frank.com</td>
+					</tr>
+					<tr>
+						<td>Doe</td>
+						<td>Jason</td>
+						<td>jdoe@hotmail.com</td>
+						<td>$100.00</td>
+						<td>http://www.jdoe.com</td>
+					</tr>
+					<tr>
+						<td>Conway</td>
+						<td>Tim</td>
+						<td>tconway@earthlink.net</td>
+						<td>$50.00</td>
+						<td>http://www.timconway.com</td>
+					</tr>
+				</tbody>
+			</table>
+
 		</div>
 
-		<div class="infobox-wrapper">
-			<div id="infobox">
-				The contents of your info box. It's very easy to create and customize.
-			</div>
-		</div>
+		<script src="src/lib/jquery-2.1.1.min.js"></script>
+		<script src="src/lib/lodash.js"></script>
 
-    <script src="src/lib/jquery-2.1.1.min.js"></script>
-    <script src="src/lib/lodash.js"></script>
+		<script src="src/lib/jquery.tablesorter.min.js"></script> 
 
-    <script src="https://maps.googleapis.com/maps/api/js?v=3.exp"></script>
-	<script src="src/lib/markerclusterer_compiled.js"></script>
-	<script src="src/lib/infobox.js"></script
+		<script src="https://maps.googleapis.com/maps/api/js?v=3.exp"></script>
+		<script src="src/lib/markerclusterer_compiled.js"></script>
+		<script src="src/lib/infobox.js"></script
 
-    <script src="src/csv-loader.js"></script>
-    <script src="src/map.js"></script>
-    <script src="src/main.js"></script>
+		<script src="src/csv-loader.js"></script>
+		<script src="src/map.js"></script>
+		<script src="src/main.js"></script>
 	</body>
 </html>
