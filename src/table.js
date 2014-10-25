@@ -1,7 +1,23 @@
 (function (exports) {
 
 	function clearTable() {
-		$("#dataTable tbody").html('');
+		$('#table').html('');
+
+		var newTable = $(
+			'<table id="dataTable" class="tablesorter">' +
+				'<thead>' +
+					'<tr>' +
+						'<th>Vertrags-Titel</th>' +
+						'<th>Gesamtkosten</th>' +
+						'<th>Haupt Aktivitäten</th>' +
+						'<th>Stadt</th>' +
+						'<th>???</th>' +
+					'</tr>' +
+				'</thead>' +
+				'<tbody>' +
+				'</tbody>' +
+			'</table>');
+		$('#table').append(newTable);
 	}
 
 	function addDataRow(data) {
@@ -16,6 +32,8 @@
 
 	function sorterRefresh () {
 		$("#dataTable").tablesorter();
+		// .tablesorter({widthFixed: true, widgets: ['zebra']}) 
+		// .tablesorterPager({container: $("#pager")}); 
 	}
 
 	exports.Table = {};
