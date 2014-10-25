@@ -45,7 +45,7 @@ var data = [
 	{ "longitude": 11.272659, "latitude": 59.637472 },
 	{ "longitude": 13.189259, "latitude": 47.483221 },
 	{ "longitude": -61.013432, "latitude": 14.493688 },
-/*	{ "longitude": 0.490866, "latitude": 40.903783 },
+	{ "longitude": 0.490866, "latitude": 40.903783 },
 	{ "longitude": 12.852459, "latitude": 47.609519 },
 	{ "longitude": -111.407890, "latitude": 36.894037 },
 	{ "longitude": 8.838158, "latitude": 46.257746 },
@@ -156,30 +156,30 @@ var data = [
 	{ "longitude": 7.949853, "latitude": 48.489947 },
 	{ "longitude": 13.965683, "latitude": 45.955625 },
 	{ "longitude": -77.640553, "latitude": -9.071585 },
-	{ "longitude": 15.965366, "latitude": 47.877556 },*/
+	{ "longitude": 15.965366, "latitude": 47.877556 },
 	{ "longitude": -2.780957, "latitude": 43.033953 }];
 
 
 	var clusterLevels = [{
-		url: '../images/people35.png',
-		height: 35,
-		width: 35,
-		anchor: [16, 0],
-		textColor: '#ff00ff',
+		url: 'assets/images/map_cluster1.png',
+		height: 20,
+		width: 20,
+		anchor: [0, 0],
+		textColor: '#000000',
 		textSize: 10
 	}, {
-		url: '../images/people45.png',
-		height: 45,
-		width: 45,
-		anchor: [24, 0],
-		textColor: '#ff0000',
+		url: 'assets/images/map_cluster2.png',
+		height: 30,
+		width: 30,
+		anchor: [0, 0],
+		textColor: '#000000',
 		textSize: 11
 	}, {
-		url: '../images/people55.png',
-		height: 55,
-		width: 55,
-		anchor: [32, 0],
-		textColor: '#ffffff',
+		url: 'assets/images/map_cluster3.png',
+		height: 40,
+		width: 40,
+		anchor: [0, 0],
+		textColor: '#000000',
 		textSize: 12
 	}];
 
@@ -292,7 +292,7 @@ var data = [
     var markers = [];
 	var map = null;
 	var infobox = null;
-	var imageUrl = 'http://chart.apis.google.com/chart?cht=mm&chs=24x32&chco=FFFFFF,008CFF,000000&ext=.png';
+	var markerImage = "assets/images/map_spot.png"; //'http://chart.apis.google.com/chart?cht=mm&chs=24x32&chco=FFFFFF,008CFF,000000&ext=.png';
 
 	infobox = new InfoBox({
 		content: document.getElementById("infobox"),
@@ -306,7 +306,7 @@ var data = [
 			width: "280px"
 		},
 		closeBoxMargin: "12px 4px 2px 2px",
-		closeBoxURL: "http://www.google.com/intl/en_us/mapfiles/close.gif",
+		closeBoxURL: "", //"http://www.google.com/intl/en_us/mapfiles/close.gif",
 		infoBoxClearance: new google.maps.Size(1, 1)
 	});
 
@@ -316,12 +316,46 @@ var data = [
 		markerClusterer.clearMarkers();
 	}
 
+	function drawLineStatis (from, to) {
+		var flightPath = new google.maps.Polyline({
+			path: [from, to],
+			icon: google.maps.SymbolPath.FORWARD_CLOSED_ARROW,
+			geodesic: true,
+			strokeColor: '#FF0000',
+			strokeOpacity: 1.0,
+			strokeWeight: 1
+		});
+		flightPath.setMap(map);		
+	}
+
+	function drawLine (from, to) {
+		var line = new google.maps.Polyline({
+			path: [from, from],
+			strokeColor: "#ffcc00",
+			strokeOpacity: 1,
+			strokeWeight: 2,
+			geodesic: true, //set to false if you want straight line instead of arc
+			map: map,
+		});
+		 var step = 0;
+		 var numSteps = 40; //Change this to set animation resolution
+		 var timePerStep = 5; //Change this to alter animation speed
+		 var interval = setInterval(function() {
+			step += 1;
+			if (step > numSteps) {
+				clearInterval(interval);
+			} else {
+				var are_we_there_yet = google.maps.geometry.spherical.interpolate(from, to, step/numSteps);
+				line.setPath([from, are_we_there_yet]);
+			}
+		}, timePerStep);		
+	}
+
 	function refreshMap() {
 		if (markerClusterer) {
 			markerClusterer.clearMarkers();
 		}
         markers = [];
-		var markerImage = new google.maps.MarkerImage(imageUrl, new google.maps.Size(24, 32));
 
 		for (var i = 0; i < data.length; i++) {
 			var latLng = new google.maps.LatLng(data[i].latitude, data[i].longitude)
@@ -330,9 +364,15 @@ var data = [
 				draggable: true,
 				icon: markerImage
 			});
-			google.maps.event.addListener(marker, 'click', function() {
+			google.maps.event.addListener(marker, 'mouseover', function (e) {
 				infobox.open(map, this);
+				var to = new google.maps.LatLng(53, 23);
+				drawLine(e.latLng, to);
 			});
+			google.maps.event.addListener(marker, 'mouseout', function() {
+				infobox.close();
+			});
+
 			markers.push(marker);
 		}
 
@@ -342,8 +382,8 @@ var data = [
 
 		markerClusterer = new MarkerClusterer(map, markers, {
 			maxZoom: zoom,
-			gridSize: size //,
-//			styles: clusterLevels
+			gridSize: size,
+			styles: clusterLevels
 		});
 	}
 
@@ -366,6 +406,14 @@ var data = [
 
         refreshMap();
 	}
+
+	var recalcMapHeight = function() {
+		var newHeight = $(window).height() - 100;
+		$("#map").css('height', newHeight+'px');
+//		google.maps.event.trigger(map, 'resize');
+	}; 
+	$(window).resize(recalcMapHeight);
+	recalcMapHeight();
 
 	google.maps.event.addDomListener(window, 'load', initialize);
 })();
