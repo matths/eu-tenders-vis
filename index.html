@@ -1,15 +1,15 @@
-<!doctype html public "5">
+<!doctype html>
 <html>
-  <head>
-    <meta charset="utf-8">
-    <title>FOLLOW THE MONEY</title>
+	<head>
+		<meta charset="utf-8">
+		<title>FOLLOW THE MONEY</title>
 
-    <link rel="stylesheet" href="assets/css/bootstrap-theme.min.css">
-    <link rel="stylesheet" href="assets/css/bootstrap.min.css">
-    <link rel="stylesheet" href="assets/css/styles.css">
-  </head>
-  <body>
-    <div id="map"></div>
+		<link rel="stylesheet" href="assets/css/bootstrap-theme.min.css">
+		<link rel="stylesheet" href="assets/css/bootstrap.min.css">
+		<link rel="stylesheet" href="assets/css/styles.css">
+	</head>
+	<body>
+		<div id="map"></div>
     <div id="container">
       <form class="clearfix">
 
@@ -95,68 +95,81 @@
       </form>
     </div>
 
-    <div class="infobox-wrapper">
-      <div id="infobox">
-        The contents of your info box. It's very easy to create and customize.
-      </div>
-    </div>
+		<div id="pager" class="pager" style="position: relative;">
+			<form>
+				<img src="../addons/pager/icons/first.png" class="first">
+				<img src="../addons/pager/icons/prev.png" class="prev">
+				<input type="text" class="pagedisplay">
+				<img src="../addons/pager/icons/next.png" class="next">
+				<img src="../addons/pager/icons/last.png" class="last">
+				<select class="pagesize">
+					<option selected="selected" value="10">10</option>
+					<option value="20">20</option>
+					<option value="30">30</option>
+					<option value="40">40</option>
+				</select>
+			</form>
+		</div>
+		<div id="table">
+			<table id="dataTable" class="tablesorter"> 
+				<thead>
+					<tr>
+						<th>Last Name</th>
+						<th>First Name</th>
+						<th>Email</th>
+						<th>Due</th>
+						<th>Web Site</th>
+					</tr>
+				</thead>
+				<tbody>
+					<tr>
+						<td>Smith</td>
+						<td>John</td>
+						<td>jsmith@gmail.com</td>
+						<td>$50.00</td>
+						<td>http://www.jsmith.com</td>
+					</tr>
+					<tr>
+						<td>Bach</td>
+						<td>Frank</td>
+						<td>fbach@yahoo.com</td>
+						<td>$50.00</td>
+						<td>http://www.frank.com</td>
+					</tr>
+					<tr>
+						<td>Doe</td>
+						<td>Jason</td>
+						<td>jdoe@hotmail.com</td>
+						<td>$100.00</td>
+						<td>http://www.jdoe.com</td>
+					</tr>
+					<tr>
+						<td>Conway</td>
+						<td>Tim</td>
+						<td>tconway@earthlink.net</td>
+						<td>$50.00</td>
+						<td>http://www.timconway.com</td>
+					</tr>
+				</tbody>
+			</table>
+		</div>
 
-    <div id="table">
-      <table id="dataTable" class="tablesorter">
-        <thead>
-          <tr>
-            <th>Last Name</th>
-            <th>First Name</th>
-            <th>Email</th>
-            <th>Due</th>
-            <th>Web Site</th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr>
-            <td>Smith</td>
-            <td>John</td>
-            <td>jsmith@gmail.com</td>
-            <td>$50.00</td>
-            <td>http://www.jsmith.com</td>
-          </tr>
-          <tr>
-            <td>Bach</td>
-            <td>Frank</td>
-            <td>fbach@yahoo.com</td>
-            <td>$50.00</td>
-            <td>http://www.frank.com</td>
-          </tr>
-          <tr>
-            <td>Doe</td>
-            <td>Jason</td>
-            <td>jdoe@hotmail.com</td>
-            <td>$100.00</td>
-            <td>http://www.jdoe.com</td>
-          </tr>
-          <tr>
-            <td>Conway</td>
-            <td>Tim</td>
-            <td>tconway@earthlink.net</td>
-            <td>$50.00</td>
-            <td>http://www.timconway.com</td>
-          </tr>
-        </tbody>
-      </table>
-    </div>
 
-    <script src="https://maps.googleapis.com/maps/api/js?v=3.exp&language=en"></script>
-    <script src="src/lib/markerclusterer.js"></script>
-    <script src="src/lib/jquery-2.1.1.min.js"></script>
-    <script src="src/lib/infobox.js"></script>
-    <script src="src/lib/jquery.tablesorter.min.js"></script>
-    <script src="src/lib/togeojson.js"></script>
-    <script src="src/lib/csv.js"></script>
-
-    <script src="src/file-loader.js"></script>
-    <script src="src/nuts-lookup.js"></script>
-    <script src="src/contracts.js"></script>
-    <script src="src/map.js"></script>
-    <script src="src/main.js"></script>
-  </body>
+		<script src="https://maps.googleapis.com/maps/api/js?v=3.exp&sensor=false&language=en"></script>
+        <script src="src/lib/markerclusterer.js"></script>
+        <script src="src/lib/jquery-1.7.2.js"></script>
+        <script src="src/lib/infobox.js"></script>
+        <script src="src/lib/jquery.tablesorter.min.js"></script>
+        <script src="src/lib/jquery.tablesorter.pager.js"></script>
+        <script src="src/lib/togeojson.js"></script>
+        <script src="src/lib/csv.js"></script>
+    
+        <script src="src/file-loader.js"></script>
+        <script src="src/nuts-lookup.js"></script>
+        <script src="src/contracts.js"></script>
+        <script src="src/map.js"></script>
+        <script src="src/table.js"></script>
+        <script src="src/main.js"></script>
+	</body>
+>>>>>>> d47fc01b5a446f94a4036ac4da96c29001b91876
 </html>

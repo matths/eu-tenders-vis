@@ -31,9 +31,9 @@
 	}
 
 	function sorterRefresh () {
-		$("#dataTable").tablesorter();
-		// .tablesorter({widthFixed: true, widgets: ['zebra']}) 
-		// .tablesorterPager({container: $("#pager")}); 
+		$("#dataTable")
+			.tablesorter({widthFixed: true, widgets: ['zebra']}) 
+			.tablesorterPager({container: $("#pager")}); 
 	}
 
 	exports.Table = {};

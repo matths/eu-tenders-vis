@@ -51,7 +51,6 @@ html, body, #map-canvas {
     color:#FFF;
     font-family:Arial, Helvetica, sans-serif;
     font-size:12px;
-    padding: .5em 1em;
     -webkit-border-radius: 2px;
     -moz-border-radius: 2px;
     border-radius: 2px;
@@ -88,17 +87,15 @@ html, body, #map-canvas {
 /*** table sorter theme ***/
 
 table.tablesorter {
-	font-family:arial;
-	background-color: #CDCDCD;
-	margin:10px 0pt 15px;
-	font-size: 8pt;
 	width: 100%;
 	text-align: left;
 }
 table.tablesorter thead tr th, table.tablesorter tfoot tr th {
-	background-color: #e6EEEE;
+	color: #ffffff;
+	text-shadow: none;
+	font-weight: bold;
+	background-color: rgba(0,0,0,0.4);
 	border: 1px solid #FFF;
-	font-size: 8pt;
 	padding: 4px;
 }
 table.tablesorter thead tr .header {
@@ -108,13 +105,13 @@ table.tablesorter thead tr .header {
 	cursor: pointer;
 }
 table.tablesorter tbody td {
-	color: #3D3D3D;
+	color: #eeeeee;
 	padding: 4px;
-	background-color: #FFF;
+	background-color: rgba(0,0,0,0.8);
 	vertical-align: top;
 }
 table.tablesorter tbody tr.odd td {
-	background-color:#F0F0F6;
+	background-color: rgba(0,0,0,0.6);
 }
 table.tablesorter thead tr .headerSortUp {
 	background-image: url('../images/asc.gif');
