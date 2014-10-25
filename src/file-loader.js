@@ -1,18 +1,18 @@
 (function (exports) {
   'use strict';
 
-  function CSVLoader (params) {
+  function FileLoader (params) {
     this.loaded = params.loaded;
 
-    $(params.element).on('change', _.bind(this.handleFileSelect, this));
+    $(params.element).on('change', this.handleFileSelect.bind(this));
   }
 
-  CSVLoader.prototype = {
+  FileLoader.prototype = {
 
-    loaded: _.noop,
+    loaded: function () {},
 
     handleFileSelect: function (evt) {
-      var file = _.first(evt.target.files);
+      var file = evt.target.files[0];
       this.read(file);
     },
 
@@ -21,17 +21,14 @@
       var reader = new FileReader();
 
       reader.onloadend = function (evt) {
-        var entries = evt.target.result.split('\n');
-        var keys = entries.shift();
-
-        self.loaded({entries: entries, keys: keys});
+        self.loaded(evt.target.result);
       };
 
       reader.readAsText(file);
     }
   };
 
-  exports.CSVLoader = CSVLoader;
+  exports.FileLoader = FileLoader;
 
 
 }(window.euvis || (window.euvis = {})));

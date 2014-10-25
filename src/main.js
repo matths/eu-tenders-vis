@@ -1,12 +1,21 @@
 (function () {
   'use strict';
 
-  $("#dataTable").tablesorter(); 
+  var Nuts3 = euvis.Nuts3;
+  var Contracts = euvis.Contracts;
+  var FileLoader = euvis.FileLoader;
 
-  new euvis.CSVLoader({
+  $("#dataTable").tablesorter();
+
+  new FileLoader({
     element: $('#csv-input'),
     loaded: function (data) {
-      console.log(data.entries.length);
+
+      Nuts3.init(function () {
+        Contracts.init(data);
+
+
+      });
     }
   })
 
