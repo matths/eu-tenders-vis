@@ -107,7 +107,7 @@
 	];
 
 	// closure globals
-	var markerClusterer = null;
+	var markerCluster = null;
 	var markers = [];
 	var map = null;
 	var infobox = null;
@@ -240,12 +240,14 @@
 	function clearClusters(e) {
 		e.preventDefault();
 		e.stopPropagation();
-		markerClusterer.clearMarkers();
+		markerCluster.clearMarkers();
 	}
 
 	function refreshMap (data) {
-		if (markerClusterer) {
-			markerClusterer.clearMarkers();
+		window.data = data; // TODO: remove, only for debug!
+
+		if (markerCluster) {
+			markerCluster.clearMarkers();
 		}
 		markers = [];
 
@@ -258,7 +260,7 @@
 				position: latLng,
 				draggable: false,
 				icon: markerImage,
-				data: 'whatnot'
+				data: data[i]
 			});
 			google.maps.event.addListener(marker, 'mouseover', showOneOrManyMarkerInfo);
 			google.maps.event.addListener(marker, 'click', function (e) {
@@ -269,10 +271,31 @@
 			markers.push(marker);
 		}
 
-		markerClusterer = new MarkerClusterer(map, markers, {
+		markerCluster = new MarkerClusterer(map, markers, {
 			maxZoom: null,
 			gridSize: null,
+//			averageCenter: true,
 			styles: clusterLevels
+		});
+		window.markerCluster = markerCluster;
+
+		google.maps.event.addListener(markerCluster, "click", function (c) {
+			euvis.Table.clearTable();
+			var m = c.getMarkers();
+			for (var i = 0; i < m.length; i++ ){
+				euvis.Table.addDataRow(m[i].data);
+			}
+			euvis.Table.sorterRefresh();
+		});
+		google.maps.event.addListener(markerCluster, "mouseover", function (c) {
+			console.log("mouseover: ");
+			console.log("Center of cluster: " + c.getCenter());
+			console.log("Number of managed markers in cluster: " + c.getSize());
+		});
+		google.maps.event.addListener(markerCluster, "mouseout", function (c) {
+			console.log("mouseout: ");
+			console.log("Center of cluster: " + c.getCenter());
+			console.log("Number of managed markers in cluster: " + c.getSize());
 		});
 	}
 	exports.Map = {};
