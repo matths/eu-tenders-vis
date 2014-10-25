@@ -273,6 +273,8 @@
 	var infobox = null;
 	var markerImage = "assets/images/map_spot.png";
 	var lines = [];
+	var additionalMarkers = [];
+	var keepOpen = false;
 
 	// info box
 	infobox = new InfoBox({
@@ -306,6 +308,15 @@
 		line.setMap(map);		
 	}
 
+	function drawToMarker(to) {
+		var marker = new google.maps.Marker({
+			position: to,
+			icon: 'assets/images/icon_info.png',
+			map: map
+		});
+		additionalMarkers.push(marker);
+	}
+
 	// animated line between two locations (lat/lng)
 	function drawLine (from, to) {
 		var line = new google.maps.Polyline({
@@ -323,6 +334,7 @@
 		 var interval = setInterval(function() {
 			step += 1;
 			if (step > numSteps) {
+				drawToMarker(to);
 				clearInterval(interval);
 			} else {
 				var are_we_there_yet = google.maps.geometry.spherical.interpolate(from, to, step/numSteps);
@@ -331,7 +343,10 @@
 		}, timePerStep);		
 	}
 
-	function clearLines() {
+	function clearLinesAndAdditionalMarkers() {
+		while (additionalMarkers.length) {
+			additionalMarkers.pop().setMap(null);
+		}
 		while (lines.length) {
 			lines.pop().setMap(null);
 		}
@@ -340,7 +355,21 @@
 
 // === MARKER EVENTS ===
 
+	function showOneOrManyMarkerInfo (e) {
+		keepOpen = false;
+		closeMarkerInfo();
 
+		infobox.open(map, this);
+		var to;
+		to = new google.maps.LatLng(53, 23); drawLine(e.latLng, to);
+		to = new google.maps.LatLng(45, 17); drawLine(e.latLng, to);
+	};
+
+	function closeMarkerInfo (e) {
+		if (keepOpen) return;
+		infobox.close();
+		clearLinesAndAdditionalMarkers();
+	};
 
 // === CLUSTERS ===
 
@@ -386,18 +415,14 @@
 			var marker = new google.maps.Marker({
 				position: latLng,
 				draggable: false,
-				icon: markerImage
+				icon: markerImage,
+				data: 'whatnot'
 			});
-			google.maps.event.addListener(marker, 'mouseover', function (e) {
-				infobox.open(map, this);
-				var to;
-				to = new google.maps.LatLng(53, 23); drawLine(e.latLng, to);
-				to = new google.maps.LatLng(45, 17); drawLine(e.latLng, to);
+			google.maps.event.addListener(marker, 'mouseover', showOneOrManyMarkerInfo);
+			google.maps.event.addListener(marker, 'click', function (e) {
+				keepOpen = true;
 			});
-			google.maps.event.addListener(marker, 'mouseout', function() {
-				infobox.close();
-				clearLines();
-			});
+			google.maps.event.addListener(marker, 'mouseout', closeMarkerInfo);
 
 			markers.push(marker);
 		}
