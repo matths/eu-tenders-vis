@@ -3,6 +3,41 @@
 var data = [
 	{"longitude": -64.404945, "latitude": -32.202924 },
 	{ "longitude": 17.470493, "latitude": 47.867077 },
+	{ "longitude": 17.470493, "latitude": 47.867077 },
+	{ "longitude": 17.470493, "latitude": 47.867077 },
+	{ "longitude": 17.470493, "latitude": 47.867077 },
+	{ "longitude": 17.470493, "latitude": 47.867077 },
+	{ "longitude": 17.470493, "latitude": 47.867077 },
+	{ "longitude": 17.470493, "latitude": 47.867077 },
+	{ "longitude": 17.470493, "latitude": 47.867077 },
+	{ "longitude": 17.470493, "latitude": 47.867077 },
+	{ "longitude": 17.470493, "latitude": 47.867077 },
+	{ "longitude": 17.470493, "latitude": 47.867077 },
+	{ "longitude": 17.470493, "latitude": 47.867077 },
+	{ "longitude": 17.470493, "latitude": 47.867077 },
+	{ "longitude": 17.470493, "latitude": 47.867077 },
+	{ "longitude": 17.470493, "latitude": 47.867077 },
+	{ "longitude": 17.470493, "latitude": 47.867077 },
+	{ "longitude": 17.470493, "latitude": 47.867077 },
+	{ "longitude": 17.470493, "latitude": 47.867077 },
+	{ "longitude": 17.470493, "latitude": 47.867077 },
+	{ "longitude": 17.470493, "latitude": 47.867077 },
+	{ "longitude": 17.470493, "latitude": 47.867077 },
+	{ "longitude": 17.470493, "latitude": 47.867077 },
+	{ "longitude": 17.470493, "latitude": 47.867077 },
+	{ "longitude": 17.470493, "latitude": 47.867077 },
+	{ "longitude": 17.470493, "latitude": 47.867077 },
+	{ "longitude": 17.470493, "latitude": 47.867077 },
+	{ "longitude": 17.470493, "latitude": 47.867077 },
+	{ "longitude": 17.470493, "latitude": 47.867077 },
+	{ "longitude": 17.470493, "latitude": 47.867077 },
+	{ "longitude": 17.470493, "latitude": 47.867077 },
+	{ "longitude": 17.470493, "latitude": 47.867077 },
+	{ "longitude": 17.470493, "latitude": 47.867077 },
+	{ "longitude": 17.470493, "latitude": 47.867077 },
+	{ "longitude": 17.470493, "latitude": 47.867077 },
+	{ "longitude": 17.470493, "latitude": 47.867077 },
+	{ "longitude": 17.470493, "latitude": 47.867077 },
 	{ "longitude": 145.141754, "latitude": -37.766372 },
 	{ "longitude": 30.785408, "latitude": 46.639301 },
 	{ "longitude": -84.693432, "latitude": 10.479372 },
@@ -10,7 +45,7 @@ var data = [
 	{ "longitude": 11.272659, "latitude": 59.637472 },
 	{ "longitude": 13.189259, "latitude": 47.483221 },
 	{ "longitude": -61.013432, "latitude": 14.493688 },
-	{ "longitude": 0.490866, "latitude": 40.903783 },
+/*	{ "longitude": 0.490866, "latitude": 40.903783 },
 	{ "longitude": 12.852459, "latitude": 47.609519 },
 	{ "longitude": -111.407890, "latitude": 36.894037 },
 	{ "longitude": 8.838158, "latitude": 46.257746 },
@@ -121,7 +156,7 @@ var data = [
 	{ "longitude": 7.949853, "latitude": 48.489947 },
 	{ "longitude": 13.965683, "latitude": 45.955625 },
 	{ "longitude": -77.640553, "latitude": -9.071585 },
-	{ "longitude": 15.965366, "latitude": 47.877556 },
+	{ "longitude": 15.965366, "latitude": 47.877556 },*/
 	{ "longitude": -2.780957, "latitude": 43.033953 }];
 
 
@@ -149,23 +184,131 @@ var data = [
 	}];
 
 	var styles = [
-		{
-			"featureType": "administrative.country",
-			"elementType": "geometry",
-			"stylers": [
-				{ "gamma": 0.28 },
-				{ "lightness": 20 },
-				{ "saturation": -11 },
-				{ "visibility": "on" },
-				{ "weight": 1.2 },
-				{ "color": "#4040b5" }
-			]
-		}
+	    {
+	        "featureType": "water",
+	        "elementType": "geometry",
+	        "stylers": [
+	            {
+	                "color": "#193341"
+	            }
+	        ]
+	    },
+	    {
+	        "featureType": "landscape",
+	        "elementType": "geometry",
+	        "stylers": [
+	            {
+	                "color": "#2c5a71"
+	            }
+	        ]
+	    },
+	    {
+	        "featureType": "road",
+	        "elementType": "geometry",
+	        "stylers": [
+	            {
+	                "color": "#29768a"
+	            },
+	            {
+	                "lightness": -37
+	            }
+	        ]
+	    },
+	    {
+	        "featureType": "poi",
+	        "elementType": "geometry",
+	        "stylers": [
+	            {
+	                "color": "#406d80"
+	            }
+	        ]
+	    },
+	    {
+	        "featureType": "transit",
+	        "elementType": "geometry",
+	        "stylers": [
+	            {
+	                "color": "#406d80"
+	            }
+	        ]
+	    },
+	    {
+	        "elementType": "labels.text.stroke",
+	        "stylers": [
+	            {
+	                "visibility": "on"
+	            },
+	            {
+	                "color": "#3e606f"
+	            },
+	            {
+	                "weight": 2
+	            },
+	            {
+	                "gamma": 0.84
+	            }
+	        ]
+	    },
+	    {
+	        "elementType": "labels.text.fill",
+	        "stylers": [
+	            {
+	                "color": "#ffffff"
+	            }
+	        ]
+	    },
+	    {
+	        "featureType": "administrative",
+	        "elementType": "geometry",
+	        "stylers": [
+	            {
+	                "weight": 0.8
+	            },
+	            {
+	                "color": "#dddddd"// 1a3541
+	            }
+	        ]
+	    },
+	    {
+	        "elementType": "labels.icon",
+	        "stylers": [
+	            {
+	                "visibility": "off"
+	            }
+	        ]
+	    },
+	    {
+	        "featureType": "poi.park",
+	        "elementType": "geometry",
+	        "stylers": [
+	            {
+	                "color": "#2c5a71"
+	            }
+	        ]
+	    }
 	];
 
 	var markerClusterer = null;
+    var markers = [];
 	var map = null;
+	var infobox = null;
 	var imageUrl = 'http://chart.apis.google.com/chart?cht=mm&chs=24x32&chco=FFFFFF,008CFF,000000&ext=.png';
+
+	infobox = new InfoBox({
+		content: document.getElementById("infobox"),
+		disableAutoPan: false,
+		maxWidth: 150,
+		pixelOffset: new google.maps.Size(-140, 0),
+		zIndex: null,
+		boxStyle: {
+			background: "url('http://google-maps-utility-library-v3.googlecode.com/svn/trunk/infobox/examples/tipbox.gif') no-repeat",
+			opacity: 0.75,
+			width: "280px"
+		},
+		closeBoxMargin: "12px 4px 2px 2px",
+		closeBoxURL: "http://www.google.com/intl/en_us/mapfiles/close.gif",
+		infoBoxClearance: new google.maps.Size(1, 1)
+	});
 
 	function clearClusters(e) {
 		e.preventDefault();
@@ -177,7 +320,7 @@ var data = [
 		if (markerClusterer) {
 			markerClusterer.clearMarkers();
 		}
-        var markers = [];
+        markers = [];
 		var markerImage = new google.maps.MarkerImage(imageUrl, new google.maps.Size(24, 32));
 
 		for (var i = 0; i < data.length; i++) {
@@ -186,6 +329,9 @@ var data = [
 				position: latLng,
 				draggable: true,
 				icon: markerImage
+			});
+			google.maps.event.addListener(marker, 'click', function() {
+				infobox.open(map, this);
 			});
 			markers.push(marker);
 		}
@@ -205,7 +351,13 @@ var data = [
 		map = new google.maps.Map(document.getElementById('map'), {
 			zoom: 4,
 			center: new google.maps.LatLng(52, 18),
-			mapTypeId: google.maps.MapTypeId.ROADMAP
+			mapTypeId: google.maps.MapTypeId.ROADMAP,
+			panControl: false,
+			zoomControl: true,
+			streetViewControl: false,
+			mapTypeControl: false,
+			draggable: true,
+			scrollwheel: false
 		});
 
 		var styledMap = new google.maps.StyledMapType(styles, {name: "Styled Map"});
