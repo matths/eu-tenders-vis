@@ -12,7 +12,7 @@
     loaded: function () {},
 
     handleFileSelect: function (evt) {
-      var file = _.first(evt.target.files);
+      var file = evt.target.files[0];
       this.read(file);
     },
 
