@@ -15,8 +15,23 @@
       Nuts3.init(function () {
         Contracts.init(data);
         Map.addData(Contracts.getAll());
+
+        $('#filter-button')
+          .removeAttr('disabled')
+          .on('click', function () {
+          Map.addData(Contracts.getFiltered({
+            money: {
+              max: +$('#max-value').val(),
+              min: +$('#min-value').val()
+            },
+            sector: $('#sector-value').val()
+          }));
+        });
       });
     }
   })
+
+
+
 
 }());

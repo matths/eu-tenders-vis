@@ -4,8 +4,12 @@
   var Nuts3 = euvis.Nuts3;
   var contracts = [];
 
+  var max = 0;
+  var min = 10000000;
+
   function getContract (entry) {
     return {
+      _exclude: false,
       contract_id: entry[0],
       contract_doc_no: entry[1],
       contract_type_contract: entry[6],
@@ -38,16 +42,58 @@
   exports.Contracts = {
     init: function (data) {
       var entries = CSV.parse(data);
-      var entry;
+      var entry, contract;
 
       for (var i = 1; i < entries.length; i++) {
         entry = entries[i];
+        contract = getContract(entry);
 
-        contracts.push(getContract(entry))
+        if (contract.contract_contract_value_cost_eur !== '') {
+
+          if(contract.contract_contract_value_cost_eur > max) {
+            max = contract.contract_contract_value_cost_eur;
+          }
+
+          if(contract.contract_contract_value_cost_eur < min) {
+            min = contract.contract_contract_value_cost_eur;
+          }
+        }
+
+        contracts.push(contract)
       }
+
+      console.log('parsed', [max, min]);
     },
 
     getAll: function () {
+      return contracts;
+    },
+
+    getFiltered: function (query) {
+      var contract;
+      var i;
+
+      for (i = 0; i < contracts.length; i++) {
+        contract = contracts[i];
+
+        if (query.money.max && contract.contract_contract_value_cost_eur > query.money.max ) {
+          contract._exclude = true;
+          continue;
+        }
+
+        if (query.money.min && contract.contract_contract_value_cost_eur < query.money.min) {
+          contract._exclude = true;
+          continue;
+        }
+
+        if (query.sector && contract.document_main_activities !== query.sector) {
+          contract._exclude = true;
+          continue;
+        }
+
+        contract._exclude = false;
+      }
+
       return contracts;
     }
   }

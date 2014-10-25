@@ -252,29 +252,29 @@
 		markers = [];
 
 		for (var i = 0; i < data.length; i++) {
+      if (!data[i]._exclude) {
+        var coords = data[i].contract_location_nuts;
+        var latLng = new google.maps.LatLng(coords.lat, coords.long)
+        var marker = new google.maps.Marker({
+          position: latLng,
+          draggable: false,
+          icon: markerImage,
+          data: data[i]
+        });
+        google.maps.event.addListener(marker, 'mouseover', showOneOrManyMarkerInfo);
+        google.maps.event.addListener(marker, 'click', function (e) {
+          keepOpen = true;
+        });
+        google.maps.event.addListener(marker, 'mouseout', closeMarkerInfo);
 
-			var coords = data[i].contract_location_nuts;
-
-			var latLng = new google.maps.LatLng(coords.lat, coords.long)
-			var marker = new google.maps.Marker({
-				position: latLng,
-				draggable: false,
-				icon: markerImage,
-				data: data[i]
-			});
-			google.maps.event.addListener(marker, 'mouseover', showOneOrManyMarkerInfo);
-			google.maps.event.addListener(marker, 'click', function (e) {
-				keepOpen = true;
-			});
-			google.maps.event.addListener(marker, 'mouseout', closeMarkerInfo);
-
-			markers.push(marker);
-		}
+        markers.push(marker);
+      }
+    }
 
 		markerCluster = new MarkerClusterer(map, markers, {
 			maxZoom: null,
 			gridSize: null,
-//			averageCenter: true,
+      // averageCenter: true,
 			styles: clusterLevels
 		});
 		window.markerCluster = markerCluster;
@@ -293,6 +293,7 @@
 			for (var i = 0; i < m.length; i++ ){
 				euvis.Table.addDataRow(m[i].data);
 			}
+      console.log('refresh table')
 			euvis.Table.sorterRefresh();
 
 			var to;

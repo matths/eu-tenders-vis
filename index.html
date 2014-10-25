@@ -1,124 +1,162 @@
 <!doctype html public "5">
 <html>
-	<head>
-		<meta charset="utf-8">
-		<title>FOLLOW THE MONEY</title>
+  <head>
+    <meta charset="utf-8">
+    <title>FOLLOW THE MONEY</title>
 
-		<link rel="stylesheet" href="assets/css/bootstrap-theme.min.css">
-		<link rel="stylesheet" href="assets/css/bootstrap.min.css">
-		<link rel="stylesheet" href="assets/css/styles.css">
-	</head>
-	<body>
-		<div id="map"></div>
-		<div id="container">
-        	FOLLOW THE MONEY
-	        <form>
-				<div class="form-group">
-					<img src="assets/images/icon_file.png" alt="csv file" height="23" width="23">
-					<input type="file" class="form-control" id="csv-input">
-				</div>
-				<div class="form-group">
-					<img src="assets/images/icon_amount.png" alt="csv file" height="23" width="23">
-					<input type="text" class="form-control" id="nuts3Code" placeholder="minimum">
-                    <input type="text" class="form-control" id="nuts3Code" placeholder="maximum">
-				</div>
-                <div class="form-group">
-					<img src="assets/images/icon_time.png" alt="csv file" height="23" width="23">
-					<input type="text" class="form-control" id="nuts3Code" placeholder="start year">
-                    <input type="text" class="form-control" id="nuts3Code" placeholder="end year">
-				</div>
-                <div class="form-group">
-					<img src="assets/images/icon_location.png" alt="csv file" height="25" width="21">
-					<input type="text" class="form-control" id="nuts3Code" placeholder="state / province / town">
-				</div>
-                <div class="form-group">
-					<img src="assets/images/icon_tag.png" alt="csv file" height="25" width="25">
-					<input type="text" class="form-control" id="nuts3Code" placeholder="sector">
-				</div>
-			</form>
-            <img src="assets/images/icon_info.png" alt="csv file" height="23" width="23"> information
-            <img src="assets/images/icon_save.png" alt="csv file" height="23" width="23"> save
-            <img src="assets/images/icon_share.png" alt="csv file" height="23" width="27"> export/share
-			<div class="infobox-wrapper">
-				<div id="infobox">
-					The contents of your info box. It's very easy to create and customize.
-				</div>
-			</div>
-		</div>
+    <link rel="stylesheet" href="assets/css/bootstrap-theme.min.css">
+    <link rel="stylesheet" href="assets/css/bootstrap.min.css">
+    <link rel="stylesheet" href="assets/css/styles.css">
+  </head>
+  <body>
+    <div id="map"></div>
+    <div id="container">
+      <form class="clearfix">
 
-		<div id="table">
-			<table id="dataTable" class="tablesorter"> 
-				<thead>
-					<tr>
-						<th>Last Name</th>
-						<th>First Name</th>
-						<th>Email</th>
-						<th>Due</th>
-						<th>Web Site</th>
-					</tr>
-				</thead>
-				<tbody>
-					<tr>
-						<td>Smith</td>
-						<td>John</td>
-						<td>jsmith@gmail.com</td>
-						<td>$50.00</td>
-						<td>http://www.jsmith.com</td>
-					</tr>
-					<tr>
-						<td>Bach</td>
-						<td>Frank</td>
-						<td>fbach@yahoo.com</td>
-						<td>$50.00</td>
-						<td>http://www.frank.com</td>
-					</tr>
-					<tr>
-						<td>Doe</td>
-						<td>Jason</td>
-						<td>jdoe@hotmail.com</td>
-						<td>$100.00</td>
-						<td>http://www.jdoe.com</td>
-					</tr>
-					<tr>
-						<td>Conway</td>
-						<td>Tim</td>
-						<td>tconway@earthlink.net</td>
-						<td>$50.00</td>
-						<td>http://www.timconway.com</td>
-					</tr>
-				</tbody>
-			</table>
-			<div id="pager" class="pager" style="top: 687px; position: absolute;">
-				<form>
-					<img src="../addons/pager/icons/first.png" class="first">
-					<img src="../addons/pager/icons/prev.png" class="prev">
-					<input type="text" class="pagedisplay">
-					<img src="../addons/pager/icons/next.png" class="next">
-					<img src="../addons/pager/icons/last.png" class="last">
-					<select class="pagesize">
-						<option selected="selected" value="10">10</option>
-						<option value="20">20</option>
-						<option value="30">30</option>
-						<option value="40">40</option>
-					</select>
-				</form>
-			</div>
-		</div>
 
-		<script src="https://maps.googleapis.com/maps/api/js?v=3.exp&sensor=false&language=en"></script>
-        <script src="src/lib/markerclusterer.js"></script>
-        <script src="src/lib/jquery-2.1.1.min.js"></script>
-        <script src="src/lib/infobox.js"></script>
-        <script src="src/lib/jquery.tablesorter.min.js"></script>
-        <script src="src/lib/jquery.tablesorter.pager.js"></script>
-        <script src="src/lib/togeojson.js"></script>
-        <script src="src/lib/csv.js"></script>
-    
-        <script src="src/file-loader.js"></script>
-        <script src="src/nuts-lookup.js"></script>
-        <script src="src/contracts.js"></script>
-        <script src="src/map.js"></script>
-        <script src="src/table.js"></script>
-        <script src="src/main.js"></script>
-	</body>
+        <div class="form-group">
+          <label>CSV File</label>
+
+          <div class="input-group">
+            <div class="input-group-addon">
+              <img src="assets/images/icon_file.png" alt="csv file" height="23" width="23">
+            </div>
+            <input type="file" class="form-control form-control-large" id="csv-input">
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label for="sector-value">Cost</label>
+
+          <div class="input-group input-group-double">
+
+            <div class="input-group-addon">
+              <img src="assets/images/icon_amount.png" alt="csv file" height="23" width="23">
+            </div>
+            <input type="text" class="form-control form-control-large" id="min-value" placeholder="minimum"
+                   style="border-top-right-radius: 4px;">
+            <input type="text" class="form-control form-control-large" id="max-value" placeholder="maximum"
+                   style="border-top-right-radius: 0;">
+          </div>
+
+        </div>
+        <!--<div class="form-group">
+          <img src="assets/images/icon_time.png" alt="csv file" height="23" width="23">
+          <input type="text" class="form-control" id="nuts3Code" placeholder="start year">
+          <input type="text" class="form-control" id="nuts3Code" placeholder="end year">
+        </div>-->
+
+
+        <!--<div class="form-group">
+          <img src="assets/images/icon_location.png" alt="csv file" height="25" width="21">
+          <input type="text" class="form-control" id="nuts3Code" placeholder="state / province / town">
+        </div>-->
+        <div class="form-group">
+
+          <label for="sector-value">Sector</label>
+
+          <div class="input-group">
+            <div class="input-group-addon">
+              <img src="assets/images/icon_tag.png" alt="csv file" height="25" width="25">
+            </div>
+            <select type="text" class="form-control form-control-large" id="sector-value">
+              <option></option>
+              <option>Airport-related activities</option>
+              <option>Defence</option>
+              <option>Economic and financial affairs</option>
+              <option>Education</option>
+              <option>Electricity</option>
+              <option>Environment</option>
+              <option>Exploration and extraction of coal and other solid fuels</option>
+              <option>General public services</option>
+              <option>Health</option>
+              <option>Housing and community amenities</option>
+              <option>Not specified</option>
+              <option>Other</option>
+              <option>Port-related activities</option>
+              <option>Production</option>
+              <option>Public order and safety</option>
+              <option>Railway services</option>
+              <option>Recreation</option>
+              <option>Social protection</option>
+              <option>Urban railway</option>
+              <option>Water</option>
+            </select>
+          </div>
+
+        </div>
+
+
+        <button type="button" class="btn btn-default btn-lg pull-right" id="filter-button" disabled>
+          <img src="assets/images/icon_update.png" height="25" width="25">
+          Filtern
+        </button>
+
+      </form>
+    </div>
+
+    <div class="infobox-wrapper">
+      <div id="infobox">
+        The contents of your info box. It's very easy to create and customize.
+      </div>
+    </div>
+
+    <div id="table">
+      <table id="dataTable" class="tablesorter">
+        <thead>
+          <tr>
+            <th>Last Name</th>
+            <th>First Name</th>
+            <th>Email</th>
+            <th>Due</th>
+            <th>Web Site</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>Smith</td>
+            <td>John</td>
+            <td>jsmith@gmail.com</td>
+            <td>$50.00</td>
+            <td>http://www.jsmith.com</td>
+          </tr>
+          <tr>
+            <td>Bach</td>
+            <td>Frank</td>
+            <td>fbach@yahoo.com</td>
+            <td>$50.00</td>
+            <td>http://www.frank.com</td>
+          </tr>
+          <tr>
+            <td>Doe</td>
+            <td>Jason</td>
+            <td>jdoe@hotmail.com</td>
+            <td>$100.00</td>
+            <td>http://www.jdoe.com</td>
+          </tr>
+          <tr>
+            <td>Conway</td>
+            <td>Tim</td>
+            <td>tconway@earthlink.net</td>
+            <td>$50.00</td>
+            <td>http://www.timconway.com</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <script src="https://maps.googleapis.com/maps/api/js?v=3.exp&language=en"></script>
+    <script src="src/lib/markerclusterer.js"></script>
+    <script src="src/lib/jquery-2.1.1.min.js"></script>
+    <script src="src/lib/infobox.js"></script>
+    <script src="src/lib/jquery.tablesorter.min.js"></script>
+    <script src="src/lib/togeojson.js"></script>
+    <script src="src/lib/csv.js"></script>
+
+    <script src="src/file-loader.js"></script>
+    <script src="src/nuts-lookup.js"></script>
+    <script src="src/contracts.js"></script>
+    <script src="src/map.js"></script>
+    <script src="src/main.js"></script>
+  </body>
 </html>

@@ -127,3 +127,17 @@ background-color: #8dbdd8;
 }
 
 
+.input-group-double input:first-child{
+    border-top-right-radius: 4px;
+}
+
+
+.input-group-double input:nth-child(2){
+    border-top-right-radius: 0;
+}
+
+
+.form-control-large {
+    height: 39px;
+    line-height: 39px
+}
