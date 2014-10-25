@@ -279,13 +279,27 @@
 		});
 		window.markerCluster = markerCluster;
 
-		google.maps.event.addListener(markerCluster, "click", function (c) {
+		google.maps.event.addListener(markerCluster, "click", function (e, c) {
+			e.stopPropagation();
+			e.preventDefault();
+			e.returnValue = false;
+
+			var mc = c.getMarkerClusterer();
+			mc.setZoomOnClick(false);
+
 			euvis.Table.clearTable();
+			var p = c.getCenter();
 			var m = c.getMarkers();
 			for (var i = 0; i < m.length; i++ ){
 				euvis.Table.addDataRow(m[i].data);
 			}
 			euvis.Table.sorterRefresh();
+
+			var to;
+			to = new google.maps.LatLng(53, 23); drawLine(p, to);
+			to = new google.maps.LatLng(45, 17); drawLine(p, to);
+			to = new google.maps.LatLng(43, 15); drawLine(p, to);
+			to = new google.maps.LatLng(44, 19); drawLine(p, to);
 		});
 		google.maps.event.addListener(markerCluster, "mouseover", function (c) {
 			console.log("mouseover: ");
