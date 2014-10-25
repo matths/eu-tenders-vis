@@ -7,13 +7,6 @@
 		<link rel="stylesheet" href="assets/css/bootstrap-theme.min.css">
 		<link rel="stylesheet" href="assets/css/bootstrap.min.css">
 		<link rel="stylesheet" href="assets/css/styles.css">
-
-    	<script src="https://maps.googleapis.com/maps/api/js?v=3.exp"></script>
-    	<script src="src/lib/jquery-2.1.1.min.js"></script>
-    	<script src="src/lib/togeojson.js"></script>
-
-    	<script src="src/map.js"></script>
-    	<script src="src/main.js"></script>
 	</head>
 	<body>
 
@@ -25,7 +18,12 @@
 
 		<div class="row">
 			<div class="col-md-4 spacing">
-				<form>
+        <div class="form-group">
+          <label for="csv-input">CSV File</label>
+          <input type="file" class="form-control" id="csv-input">
+        </div>
+
+        <form>
 					<div class="form-group">
 						<label for="nuts3Code">NUTS3 Code</label>
 						<input type="text" class="form-control" id="nuts3Code" placeholder="Enter nuts3 code">
@@ -38,5 +36,13 @@
 			</div>
 		</div>
 
+    <script src="https://maps.googleapis.com/maps/api/js?v=3.exp"></script>
+    <script src="src/lib/jquery-2.1.1.min.js"></script>
+    <script src="src/lib/togeojson.js"></script>
+    <script src="src/lib/lodash.js"></script>
+
+    <script src="src/csv-loader.js"></script>
+    <script src="src/map.js"></script>
+    <script src="src/main.js"></script>
 	</body>
 </html>
