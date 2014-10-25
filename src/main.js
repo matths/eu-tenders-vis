@@ -3,8 +3,11 @@
 
   var Nuts3 = euvis.Nuts3;
   var Contracts = euvis.Contracts;
+  var FileLoader = euvis.FileLoader;
 
-  new euvis.FileLoader({
+  $("#dataTable").tablesorter();
+
+  new FileLoader({
     element: $('#csv-input'),
     loaded: function (data) {
 

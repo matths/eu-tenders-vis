@@ -4,12 +4,12 @@
   function FileLoader (params) {
     this.loaded = params.loaded;
 
-    $(params.element).on('change', _.bind(this.handleFileSelect, this));
+    $(params.element).on('change', this.handleFileSelect.bind(this));
   }
 
   FileLoader.prototype = {
 
-    loaded: _.noop,
+    loaded: function () {},
 
     handleFileSelect: function (evt) {
       var file = _.first(evt.target.files);
