@@ -18,7 +18,6 @@
 		$("#dataTable").tablesorter();
 	}
 
-
 	exports.Table = {};
 	exports.Table.clearTable = clearTable;
 	exports.Table.addDataRow = addDataRow;
