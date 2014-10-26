@@ -19,6 +19,23 @@ html, body, #map-canvas {
 	z-index: 0;
 }
 
+#hackday {
+	display: block;
+	width: 50px;
+	height: 50px;
+	background: red;
+	position: absolute;
+	top: 20px;
+	left: 330px;
+	text-indent: -9999px;
+	text-align: left;
+	background: transparent url('../images/logo_50x50.png') scroll no-repeat top left;
+	opacity: 0.5;
+}
+#hackday:hover {
+	opacity: 1;
+}
+
 #container {
 	z-index: 1;
 	width: 300px;
