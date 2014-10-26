@@ -1,7 +1,7 @@
 (function (exports) {
   'use strict';
 
-  var Nuts3 = euvis.Nuts3;
+  var GeoConverter = euvis.GeoConverter;
   var contracts = [];
 
   var max = 0;
@@ -13,7 +13,7 @@
       contract_id: entry[0],
       contract_doc_no: entry[1],
       contract_type_contract: entry[6],
-      contract_location_nuts: Nuts3.convert(entry[9]),
+      contract_location_nuts: GeoConverter.convertNUTS3(entry[9]),
       contract_offers_received_meaning: entry[10],
       contract_operator_town: entry[12],
       contract_operator_official_name: entry[23],
@@ -32,10 +32,9 @@
       document_orig_nuts: entry[112],
       document_contract_nature: entry[121],
       document_title_town: entry[124],
-      document_orig_nuts_code: Nuts3.convert(entry[128]),
+      document_orig_nuts_code: GeoConverter.convertNUTS3(entry[128]),
       document_award_criteria: entry[129],
       document_main_activities: entry[134]
-
     };
   }
 

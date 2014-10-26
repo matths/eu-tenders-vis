@@ -1,7 +1,7 @@
 (function () {
   'use strict';
 
-  var Nuts3 = euvis.Nuts3;
+  var GeoConverter = euvis.GeoConverter;
   var Contracts = euvis.Contracts;
   var FileLoader = euvis.FileLoader;
   var Map = euvis.Map;
@@ -12,7 +12,7 @@
     element: $('#csv-input'),
     loaded: function (data) {
 
-      Nuts3.init(function () {
+      GeoConverter.init(function () {
         Contracts.init(data);
         Map.addData(Contracts.getAll());
 
