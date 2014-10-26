@@ -96,7 +96,7 @@
 	function showTableDataForMarkers(markers) {
 			euvis.Table.clearTable();
 			for (var i = 0; i < markers.length; i++ ){
-				euvis.Table.addDataRow(markers[i].data);
+				euvis.Table.addDataRow(markers[i].data, markers[i]);
 			}
 			euvis.Table.sorterRefresh();
 	};

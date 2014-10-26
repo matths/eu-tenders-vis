@@ -7,11 +7,12 @@
 			'<table id="dataTable" class="tablesorter">' +
 				'<thead>' +
 					'<tr>' +
-						'<th>Vertrags-Titel</th>' +
-						'<th>Gesamtkosten</th>' +
-						'<th>Haupt Aktivitäten</th>' +
-						'<th>Stadt</th>' +
-						'<th>???</th>' +
+						'<th>Contractee</th>' +
+						'<th>Description</th>' +
+						'<th>City</th>' +
+						'<th>Value</th>' +
+						'<th>Sector</th>' +
+						'<th>Offers received</th>' +
 					'</tr>' +
 				'</thead>' +
 				'<tbody>' +
@@ -20,20 +21,28 @@
 		$('#table').append(newTable);
 	}
 
-	function addDataRow(data) {
-		var d1 = data.contract_contract_title;
-		var d2 = data.contract_total_value_cost;
-		var d3 = data.document_main_activities;
-		var d4 = data.document_title_town;
-		var d5 = data.contract_operator_official_name;
-		var row = $('<tr><td>'+d1+'</td><td>'+d2+'</td><td>'+d3+'</td><td>'+d4+'</td><td>'+d5+'</td></tr>');
+	function addDataRow(data, marker) {
+		// TODO: add dots... 11.000.000,00 €
+		value = data.contract_contract_value_cost_eur.split('.').join(',');
+		var row = $(
+			'<tr>' +
+				'<td>'+ data.contract_operator_official_name +'</td>' +
+				'<td title="'+ data.contract_contract_title +'">'+ data.contract_contract_title.substring(0, 60) +'…</td>' +
+				'<td>'+ data.document_title_town +'</td>' +
+				'<td>€ '+ value +'</td>' +
+				'<td>'+ data.document_main_activities +'</td>' +
+				'<td>'+ data.contract_offers_received_meaning +'</td>' +
+			'</tr>');
 		$("#dataTable tbody").append(row);
 	}
 
 	function sorterRefresh () {
 		$('#pager').show();
 		$("#dataTable")
-			.tablesorter({widthFixed: true, widgets: ['zebra']})
+			.tablesorter({
+				size: 5,
+				widthFixed: true,
+				widgets: ['zebra']})
 			.tablesorterPager({
 				container: $("#pager"),
 				size: 5,
