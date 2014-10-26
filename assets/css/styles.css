@@ -19,19 +19,26 @@ html, body, #map-canvas {
 	z-index: 0;
 }
 
+#github,
 #hackday {
 	display: block;
 	width: 50px;
 	height: 50px;
-	background: red;
 	position: absolute;
-	top: 20px;
 	left: 330px;
 	text-indent: -9999px;
 	text-align: left;
-	background: transparent url('../images/logo_50x50.png') scroll no-repeat top left;
 	opacity: 0.5;
 }
+#hackday {
+	background: transparent url('../images/logo_50x50.png') scroll no-repeat top left;
+	top: 20px;
+}
+#github {
+	background: transparent url('../images/logo_github.png') scroll no-repeat top left;
+	top: 70px;
+}
+#github:hover,
 #hackday:hover {
 	opacity: 1;
 }

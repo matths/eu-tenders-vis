@@ -76,7 +76,7 @@
 	}
 
 	function drawLineToReceipientForMarker (markers, cluster) {
-		if (cluster.getSize()>300) return;
+		if (cluster && cluster.getSize()>300) return;
 
 		for (i=0; i< markers.length; i++) {
 			var marker = markers[i];
