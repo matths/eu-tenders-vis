@@ -138,8 +138,15 @@
 	function markersEvent (type, event, markers, cluster) {
 		console.log(type, event, markers, markers.length, cluster);
 
+		var mc = cluster.getMarkerClusterer();
 		if (type == 'click') {
-			if (markers.length < 100) showTableDataForMarkers(markers);
+			if (markers.length < 100) {
+				mc.setZoomOnClick(false);
+				showTableDataForMarkers(markers);
+			} else {
+				removeLineAndReceipient();
+				mc.setZoomOnClick(true);
+			}
 		}
 
 		if (type == 'mouseover') {
@@ -234,6 +241,8 @@
 	function initialize() {
 		map = new google.maps.Map(document.getElementById('map'), {
 			zoom: 4,
+			minZoom: 4,
+			maxZoom: 8,
 			center: new google.maps.LatLng(52, 18),
 			mapTypeId: google.maps.MapTypeId.ROADMAP,
 			panControl: false,
