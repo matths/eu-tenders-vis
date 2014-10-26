@@ -139,7 +139,7 @@
 		console.log(type, event, markers, markers.length, cluster);
 
 		if (type == 'click') {
-			showTableDataForMarkers(markers);
+			if (markers.length < 100) showTableDataForMarkers(markers);
 		}
 
 		if (type == 'mouseover') {
