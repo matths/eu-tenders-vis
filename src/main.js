@@ -6,19 +6,17 @@
   var FileLoader = euvis.FileLoader;
   var Map = euvis.Map;
 
-	$('#pager').show();
 
-  new FileLoader({
-    element: $('#csv-input'),
-    loaded: function (data) {
+  $.get('data/ted-contracts-de-2014.csv', function (data) {
 
-      GeoConverter.init(function () {
-        Contracts.init(data);
-        Map.addData(Contracts.getAll());
+    GeoConverter.init(function () {
+      Contracts.init(data);
+      Map.addData(Contracts.getAll());
 
-        $('#filter-button')
-          .removeAttr('disabled')
-          .on('click', function () {
+      $('#loading-screen').remove();
+
+      $('#filter-button')
+        .on('click', function () {
           Map.addData(Contracts.getFiltered({
             money: {
               max: +$('#max-value').val(),
@@ -27,8 +25,8 @@
             sector: $('#sector-value').val()
           }));
         });
-      });
-    }
-  })
+    });
+
+  });
 
 }());

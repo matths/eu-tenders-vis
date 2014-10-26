@@ -1,7 +1,8 @@
 (function (exports) {
 
 	function clearTable() {
-		$('#table').html('');
+		$('#table-container').show();
+    $('#table').html('');
 
 		var newTable = $(
 			'<table id="dataTable" class="tablesorter">' +

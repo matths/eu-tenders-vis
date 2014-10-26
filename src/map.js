@@ -128,7 +128,9 @@
 	};
 
 	function showTableDataForMarkers(markers) {
-			euvis.Table.clearTable();
+    $('#pager').show();
+
+    euvis.Table.clearTable();
 			for (var i = 0; i < markers.length; i++ ){
 				euvis.Table.addDataRow(markers[i].data, markers[i]);
 			}
