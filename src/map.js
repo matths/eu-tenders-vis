@@ -14,12 +14,12 @@
 		content: document.getElementById("infobox"),
 		disableAutoPan: false,
 		maxWidth: 150,
-		pixelOffset: new google.maps.Size(-140, 0),
+		pixelOffset: new google.maps.Size(-90, 0),
 		zIndex: null,
 		boxStyle: {
-			background: "url('assets/images/tipbox.gif') no-repeat",
+			background: "url('assets/images/infobox_arrow.png') scroll no-repeat center top",
 			opacity: 0.75,
-			width: "280px"
+			width: "180px"
 		},
 		closeBoxMargin: "12px 4px 2px 2px",
 		closeBoxURL: "", //"http://www.google.com/intl/en_us/mapfiles/close.gif",
@@ -50,7 +50,7 @@
 		});
 		lines.push(line);
 		 var step = 0;
-		 var numSteps = 40; //Change this to set animation resolution
+		 var numSteps = 50; //Change this to set animation resolution
 		 var timePerStep = 5; //Change this to alter animation speed
 		 var interval = setInterval(function() {
 			step += 1;
@@ -66,7 +66,7 @@
 		}, timePerStep);		
 	}
 
-	function clearLinesAndAdditionalMarkers() {
+	function removeLineAndReceipient() {
 		while (additionalMarkers.length) {
 			additionalMarkers.pop().setMap(null);
 		}
@@ -75,11 +75,21 @@
 		}
 	}
 
+	function drawLineToReceipientForMarker (markers) {
+		for (i=0; i< markers.length; i++) {
+			var marker = markers[i];
+			var to = new google.maps.LatLng(53, 23);
+			drawLine(marker.getPosition(), to);
+		}
+	}
+
 // === MARKER EVENTS ===
 
 	function showInfoBoxForMarker(marker) {
-		$('#infobox').html('contractee: '+marker.data.contract_operator_official_name);
+		infobox.close();
 		marker.setMap(map);
+//		$('#infobox')
+		$(infobox.content_).html('contractee: '+marker.data.contract_operator_official_name);
 		infobox.open(map, marker);
 	}
 
@@ -101,7 +111,7 @@
 	function closeMarkerInfo (e) {
 		if (keepOpen) return;
 		infobox.close();
-		clearLinesAndAdditionalMarkers();
+		removeLineAndReceipient();
 	};
 
 	function showTableDataForMarkers(markers) {
@@ -240,6 +250,7 @@
 	exports.Map.addData = refreshMap;
 	exports.Map.showInfoBoxForMarker = showInfoBoxForMarker;
 	exports.Map.hideInfoBoxForMarker = hideInfoBoxForMarker;
-
+	exports.Map.drawLineToReceipientForMarker = drawLineToReceipientForMarker;
+	exports.Map.removeLineAndReceipient = removeLineAndReceipient;
 
 }(window.euvis || (window.euvis = {})));

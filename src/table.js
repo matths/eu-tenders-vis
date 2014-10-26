@@ -7,7 +7,8 @@
 			'<table id="dataTable" class="tablesorter">' +
 				'<thead>' +
 					'<tr>' +
-						'<th>Contractee</th>' +
+						'<th>Contract Authority</th>' +
+						'<th>Contract Operator</th>' +
 						'<th>Description</th>' +
 						'<th>City</th>' +
 						'<th>Value</th>' +
@@ -28,6 +29,7 @@
 		var row = $(
 			'<tr>' +
 				'<td>'+ data.contract_authority_official_name +'</td>' +
+				'<td>'+ data.contract_operator_official_name +'</td>' +
 				'<td title="'+ data.contract_contract_title +'">'+ data.contract_contract_title.substring(0, 60) +'…</td>' +
 				'<td>'+ data.document_title_town +'</td>' +
 				'<td>€ '+ value +'</td>' +
@@ -43,10 +45,12 @@
 			row.addClass('highlight');
 			var marker = row.data('marker');
 			euvis.Map.showInfoBoxForMarker(marker);
+			euvis.Map.drawLineToReceipientForMarker([marker]);
 		});
 		row.bind("mouseout", function (e) {
 			row.removeClass('highlight');
 			euvis.Map.hideInfoBoxForMarker(marker);
+			euvis.Map.removeLineAndReceipient();
 		});
 	}
 
