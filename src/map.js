@@ -76,6 +76,8 @@
 	}
 
 	function drawLineToReceipientForMarker (markers, cluster) {
+		if (cluster.getSize()>300) return;
+
 		for (i=0; i< markers.length; i++) {
 			var marker = markers[i];
 			var data = marker.data;
@@ -84,13 +86,13 @@
 			var reciepient_country = marker.data.contract_operator_country;
 			if (reciepient_country=="DE") {
 				var location = euvis.GeoConverter.convertZIP(reciepient_zip);
-				var to = new google.maps.LatLng(location.lat, location.long);
-//				var to = new google.maps.LatLng(53, 23);
-
-				if (cluster && markers.length > 1) {
-					drawLine(cluster.getCenter(), to);
-				} else {
-					drawLine(marker.getPosition(), to);
+				if (location) {
+					var to = new google.maps.LatLng(location.lat, location.long);
+					if (cluster && markers.length > 1) {
+						drawLine(cluster.getCenter(), to);
+					} else {
+						drawLine(marker.getPosition(), to);
+					}
 				}
 			}
 		}
@@ -242,7 +244,7 @@
 		map = new google.maps.Map(document.getElementById('map'), {
 			zoom: 4,
 			minZoom: 4,
-			maxZoom: 8,
+			maxZoom: 10,
 			center: new google.maps.LatLng(52, 18),
 			mapTypeId: google.maps.MapTypeId.ROADMAP,
 			panControl: false,
