@@ -39,6 +39,21 @@ html, body, #map-canvas {
     box-shadow: 0 0 8px #000;
 }
 
+#container h1,
+#container h2{
+	color: #ffcc00;
+	margin: 5px 0;
+}
+
+#container h1{
+	font-size: 18px;
+}
+
+#container h2{
+	font-size: 13px;
+	margin-bottom: 15px;
+}
+
 #table-container {
 	z-index: 1;
 	width: calc(100% - 40px);

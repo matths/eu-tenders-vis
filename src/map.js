@@ -44,7 +44,7 @@
 	function drawToMarker(to) {
 		var marker = new google.maps.Marker({
 			position: to,
-			icon: exports.MapSettings.markerStyles.fromMarker,
+			icon: exports.MapSettings.markerStyles.toMarker,
 			map: map
 		});
 		additionalMarkers.push(marker);

@@ -133,7 +133,7 @@
 	// normal markers
 	var markerStyles = {
 		fromMarker: "assets/images/map_spot.png",
-		toMarker: "assets/images/icon_info.png"
+		toMarker: "assets/images/map_recipient.png"
 	}
 
 	exports.MapSettings = {};
