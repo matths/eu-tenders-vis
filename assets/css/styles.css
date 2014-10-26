@@ -89,13 +89,16 @@ html, body, #map-canvas {
 table.tablesorter {
 	width: 100%;
 	text-align: left;
+	border-collapse: collapse;
 }
-table.tablesorter thead tr th, table.tablesorter tfoot tr th {
+table.tablesorter thead tr th,
+table.tablesorter tfoot tr th {
 	color: #ffffff;
 	text-shadow: none;
 	font-weight: bold;
-	background-color: rgba(0,0,0,0.4);
-	border: 1px solid #FFF;
+	background-color: transparent;
+	border: 1px solid #ffcc00;
+	border-bottom: 2px solid #ffcc00;
 	padding: 4px;
 }
 table.tablesorter thead tr .header {
@@ -107,11 +110,12 @@ table.tablesorter thead tr .header {
 table.tablesorter tbody td {
 	color: #eeeeee;
 	padding: 4px;
-	background-color: rgba(0,0,0,0.8);
+	background-color: transparent;
+	border: 1px solid #ffcc00;
 	vertical-align: top;
 }
 table.tablesorter tbody tr.odd td {
-	background-color: rgba(0,0,0,0.6);
+	background-color: rgba(0,0,0,0.5);
 }
 table.tablesorter thead tr .headerSortUp {
 	background-image: url('../images/asc.gif');
