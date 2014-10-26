@@ -50,12 +50,12 @@
 		});
 		lines.push(line);
 		 var step = 0;
-		 var numSteps = 50; //Change this to set animation resolution
+		 var numSteps = 40; //Change this to set animation resolution
 		 var timePerStep = 5; //Change this to alter animation speed
 		 var interval = setInterval(function() {
 			step += 1;
 			if (step > numSteps) {
-				drawToMarker(to);
+				if (lines.length>0) drawToMarker(to);
 				clearInterval(interval);
 			} else {
 				if (google.maps.geometry) {
