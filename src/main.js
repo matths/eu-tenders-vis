@@ -6,7 +6,7 @@
   var FileLoader = euvis.FileLoader;
   var Map = euvis.Map;
 
-  $("#dataTable").tablesorter();
+	$('#pager').show();
 
   new FileLoader({
     element: $('#csv-input'),
@@ -30,8 +30,5 @@
       });
     }
   })
-
-
-
 
 }());

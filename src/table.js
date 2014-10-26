@@ -31,6 +31,7 @@
 	}
 
 	function sorterRefresh () {
+		$('#pager').show();
 		$("#dataTable")
 			.tablesorter({widthFixed: true, widgets: ['zebra']})
 			.tablesorterPager({
