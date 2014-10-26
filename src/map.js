@@ -77,6 +77,17 @@
 
 // === MARKER EVENTS ===
 
+	function showInfoBoxForMarker(marker) {
+		$('#infobox').html('contractee: '+marker.data.contract_operator_official_name);
+		marker.setMap(map);
+		infobox.open(map, marker);
+	}
+
+	function hideInfoBoxForMarker(marker) {
+		marker.setMap(null);
+		infobox.close();
+	}
+
 	function showOneOrManyMarkerInfo (e) {
 		keepOpen = false;
 		closeMarkerInfo();
@@ -186,8 +197,7 @@
 			return markersEvent('mouseout', null, m, c);
 		});
 	}
-	exports.Map = {};
-	exports.Map.addData = refreshMap;
+
 
 // === GENRAL MAP INITIALIZATION ===
 
@@ -223,5 +233,13 @@
 	recalcMapHeight();
 
 	google.maps.event.addDomListener(window, 'load', initialize);
+
+
+
+	exports.Map = {};
+	exports.Map.addData = refreshMap;
+	exports.Map.showInfoBoxForMarker = showInfoBoxForMarker;
+	exports.Map.hideInfoBoxForMarker = hideInfoBoxForMarker;
+
 
 }(window.euvis || (window.euvis = {})));

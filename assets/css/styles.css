@@ -26,32 +26,25 @@ html, body, #map-canvas {
 	top: 20px;
 	left: 20px;
     border: 2px solid #ffcc00;
-    background: rgba(0,0,0,0.5);
     color:#FFF;
     font-family:Arial, Helvetica, sans-serif;
     font-size:12px;
-    padding: .5em 1em;
+    padding: 0 1em .5em 1em;
     -webkit-border-radius: 2px;
     -moz-border-radius: 2px;
     border-radius: 2px;
     text-shadow:0 -1px #000000;
     -webkit-box-shadow: 0 0  8px #000;
     box-shadow: 0 0 8px #000;
+
+    background: rgba(0,0,0,0.5);
 }
 
-#container h1,
-#container h2{
-	color: #ffcc00;
-	margin: 5px 0;
-}
-
-#container h1{
-	font-size: 18px;
-}
-
-#container h2{
-	font-size: 13px;
-	margin-bottom: 15px;
+#container .logo{
+	height: 42px;
+	padding-top: 5px;
+	margin: 0 -1em 0.8em -1em;
+    background: #ffcc00 url('../images/type_followthemoney.png') scroll no-repeat center 5px;
 }
 
 #table-container {
@@ -108,16 +101,15 @@ table.tablesorter {
 }
 table.tablesorter thead tr th,
 table.tablesorter tfoot tr th {
-	color: #ffffff;
+	color: #193241;
 	text-shadow: none;
 	font-weight: bold;
-	background-color: transparent;
-	border: 1px solid #ffcc00;
-	border-bottom: 2px solid #ffcc00;
+	background-color: #ffcc00;
+	border: none;
 	padding: 4px;
 }
 table.tablesorter thead tr .header {
-	background-image: url('../images/bg.gif');
+	background-image: url('../images/bg_blue.png');
 	background-repeat: no-repeat;
 	background-position: center right;
 	cursor: pointer;
@@ -126,17 +118,21 @@ table.tablesorter tbody td {
 	color: #eeeeee;
 	padding: 4px;
 	background-color: transparent;
-	border: 1px solid #ffcc00;
+	border: none;
 	vertical-align: top;
 }
 table.tablesorter tbody tr.odd td {
-	background-color: rgba(0,0,0,0.5);
+	background-color: rgba(255, 255, 255, 0.2);
 }
+table.tablesorter tbody tr.highlight td {
+	background-color: rgba(255, 255, 255, 0.5);
+}
+
 table.tablesorter thead tr .headerSortUp {
-	background-image: url('../images/asc.gif');
+	background-image: url('../images/asc_blue.png');
 }
 table.tablesorter thead tr .headerSortDown {
-	background-image: url('../images/desc.gif');
+	background-image: url('../images/desc_blue.png');
 }
 table.tablesorter thead tr .headerSortDown, table.tablesorter thead tr .headerSortUp {
 background-color: #8dbdd8;
@@ -167,4 +163,10 @@ background-color: #8dbdd8;
 .form-control-large {
     height: 39px;
     line-height: 39px
+}
+
+a.ted_url {
+	color: #ffcc00;
+	text-decoration: underline;
+	text-shadow: none;
 }
