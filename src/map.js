@@ -29,18 +29,6 @@
 
 // === LINES ===
 
-	function drawLineStatic (from, to) {
-		var line = new google.maps.Polyline({
-			path: [from, to],
-			icon: google.maps.SymbolPath.FORWARD_CLOSED_ARROW,
-			geodesic: true,
-			strokeColor: '#ffcc00',
-			strokeOpacity: 1,
-			strokeWeight: 2
-		});
-		line.setMap(map);		
-	}
-
 	function drawToMarker(to) {
 		var marker = new google.maps.Marker({
 			position: to,
@@ -70,8 +58,10 @@
 				drawToMarker(to);
 				clearInterval(interval);
 			} else {
-				var are_we_there_yet = google.maps.geometry.spherical.interpolate(from, to, step/numSteps);
-				line.setPath([from, are_we_there_yet]);
+				if (google.maps.geometry) {
+					var are_we_there_yet = google.maps.geometry.spherical.interpolate(from, to, step/numSteps);
+					line.setPath([from, are_we_there_yet]);
+				}
 			}
 		}, timePerStep);		
 	}
@@ -84,7 +74,6 @@
 			lines.pop().setMap(null);
 		}
 	}
-
 
 // === MARKER EVENTS ===
 
@@ -104,6 +93,31 @@
 		clearLinesAndAdditionalMarkers();
 	};
 
+	function showTableDataForMarkers(markers) {
+			euvis.Table.clearTable();
+			for (var i = 0; i < markers.length; i++ ){
+				euvis.Table.addDataRow(markers[i].data);
+			}
+			euvis.Table.sorterRefresh();
+	};
+
+	function markersEvent (type, event, markers, cluster) {
+		console.log(type, event, markers, markers.length, cluster);
+
+		if (type == 'click') {
+			showTableDataForMarkers(markers);
+		}
+		// return showOneOrManyMarkerInfo(e);
+		// return closeMarkerInfo(e);
+/*
+			var to;
+			to = new google.maps.LatLng(53, 23); drawLine(p, to);
+			to = new google.maps.LatLng(45, 17); drawLine(p, to);
+			to = new google.maps.LatLng(43, 15); drawLine(p, to);
+			to = new google.maps.LatLng(44, 19); drawLine(p, to);
+*/
+	}
+
 // === CLUSTERS ===
 
 	function clearClusters(e) {
@@ -112,79 +126,68 @@
 		markerCluster.clearMarkers();
 	}
 
-	function refreshMap (data) {
-		window.data = data; // TODO: remove, only for debug!
+	function addMarkers (data) {
+		for (var i = 0; i < data.length; i++) {
+			if (!data[i]._exclude) {
+				var coords = data[i].contract_location_nuts;
+				var latLng = new google.maps.LatLng(coords.lat, coords.long)
+				var marker = new google.maps.Marker({
+					position: latLng,
+					draggable: false,
+					icon: exports.MapSettings.markerStyles.fromMarker,
+					data: data[i] // append data to marker
+				});
 
+				// marker events
+				google.maps.event.addListener(marker, 'mouseover', function (e) {
+					return markersEvent('mouseover', e, [marker]);
+				});
+
+				google.maps.event.addListener(marker, 'mouseout', function (e) {
+					return markersEvent('mouseout', e, [marker]);
+				});
+
+				google.maps.event.addListener(marker, 'click', function (e) {
+					return markersEvent('click', e, [marker]);
+				});
+
+				// keep markers
+				markers.push(marker);
+			}
+		}
+	}
+
+	function refreshMap (data) {
 		if (markerCluster) {
 			markerCluster.clearMarkers();
 		}
 		markers = [];
+		addMarkers(data);
 
-		for (var i = 0; i < data.length; i++) {
-      if (!data[i]._exclude) {
-        var coords = data[i].contract_location_nuts;
-        var latLng = new google.maps.LatLng(coords.lat, coords.long)
-        var marker = new google.maps.Marker({
-          position: latLng,
-          draggable: false,
-          icon: exports.MapSettings.markerStyles.fromMarker,
-          data: data[i]
-        });
-        google.maps.event.addListener(marker, 'mouseover', showOneOrManyMarkerInfo);
-        google.maps.event.addListener(marker, 'click', function (e) {
-          keepOpen = true;
-        });
-        google.maps.event.addListener(marker, 'mouseout', closeMarkerInfo);
-
-        markers.push(marker);
-      }
-    }
-
+		// cluster markers
 		markerCluster = new MarkerClusterer(map, markers, {
-			maxZoom: null,
-			gridSize: null,
-      // averageCenter: true,
-			styles:  exports.MapSettings.clusterStyles
+			gridSize: 100,
+      		averageCenter: true,
+      		zoomOnClick: false,
+			styles: exports.MapSettings.clusterStyles
 		});
-		window.markerCluster = markerCluster;
 
+		// cluster events
 		google.maps.event.addListener(markerCluster, "click", function (e, c) {
-			e.stopPropagation();
-			e.preventDefault();
-			e.returnValue = false;
-
-			var mc = c.getMarkerClusterer();
-			mc.setZoomOnClick(false);
-
-			euvis.Table.clearTable();
-			var p = c.getCenter();
-			var m = c.getMarkers();
-			for (var i = 0; i < m.length; i++ ){
-				euvis.Table.addDataRow(m[i].data);
-			}
-      console.log('refresh table')
-			euvis.Table.sorterRefresh();
-
-			var to;
-			to = new google.maps.LatLng(53, 23); drawLine(p, to);
-			to = new google.maps.LatLng(45, 17); drawLine(p, to);
-			to = new google.maps.LatLng(43, 15); drawLine(p, to);
-			to = new google.maps.LatLng(44, 19); drawLine(p, to);
+			var s = c.getSize(), p = c.getCenter(), m = c.getMarkers();
+			return markersEvent('click', e, m, c);
 		});
 		google.maps.event.addListener(markerCluster, "mouseover", function (c) {
-			console.log("mouseover: ");
-			console.log("Center of cluster: " + c.getCenter());
-			console.log("Number of managed markers in cluster: " + c.getSize());
+			var s = c.getSize(), p = c.getCenter(), m = c.getMarkers();
+			return markersEvent('mouseover', null, m, c);
 		});
 		google.maps.event.addListener(markerCluster, "mouseout", function (c) {
-			console.log("mouseout: ");
-			console.log("Center of cluster: " + c.getCenter());
-			console.log("Number of managed markers in cluster: " + c.getSize());
+			var s = c.getSize(), p = c.getCenter(), m = c.getMarkers();
+			return markersEvent('mouseout', null, m, c);
 		});
 	}
 	exports.Map = {};
 	exports.Map.addData = refreshMap;
-
 
 // === GENRAL MAP INITIALIZATION ===
 
