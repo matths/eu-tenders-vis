@@ -84,7 +84,7 @@
 			var reciepient_country = marker.data.contract_operator_country;
 			if (reciepient_country=="DE") {
 				var location = euvis.GeoConverter.convertZIP(reciepient_zip);
-				var to = new google.maps.LatLng(location.long, location.lat);
+				var to = new google.maps.LatLng(location.lat, location.long);
 //				var to = new google.maps.LatLng(53, 23);
 
 				if (cluster && markers.length > 1) {

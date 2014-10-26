@@ -25,17 +25,20 @@
 
 	function addDataRow(data, marker) {
 		// TODO: add dots... 11.000.000,00 €
-		value = data.contract_contract_value_cost_eur;
+		
+		var ted_value = data.contract_contract_value_cost_eur;
+		var ted_num = data.document_doc_no.substr(data.document_doc_no.length - 6);
+		
 		var row = $(
 			'<tr>' +
 				'<td>'+ data.contract_authority_official_name +'</td>' +
 				'<td>'+ data.contract_operator_official_name +'</td>' +
 				'<td title="'+ data.contract_contract_title +'">'+ data.contract_contract_title.substring(0, 60) +'…</td>' +
 				'<td>'+ data.document_title_town +'</td>' +
-				'<td>€ '+ value +'</td>' +
+				'<td>€ '+ ted_value +'</td>' +
 				'<td>'+ data.document_main_activities +'</td>' +
 				'<td>'+ data.contract_offers_received_meaning +'</td>' +
-				'<td><a class="ted_url" target="_blank" href="'+ data.document_doc_url +'">'+ data.document_doc_no +'</a></td>' +
+				'<td><a class="ted_url" target="_blank" href="'+ data.document_doc_url +'">'+ ted_num +'</a></td>' +
 			'</tr>');
 		$("#dataTable tbody").append(row);
 
