@@ -1,117 +1,10 @@
 (function (exports) {
 
-	// colorize google maps
-	var styles = [
-		{
-			"featureType": "water",
-			"elementType": "geometry",
-			"stylers": [
-				{
-					"color": "#193341"
-				}
-			]
-		},
-		{
-			"featureType": "landscape",
-			"elementType": "geometry",
-			"stylers": [
-				{
-					"color": "#2c5a71"
-				}
-			]
-		},
-		{
-			"featureType": "road",
-			"elementType": "geometry",
-			"stylers": [
-				{
-					"color": "#29768a"
-				},
-				{
-					"lightness": -37
-				}
-			]
-		},
-		{
-			"featureType": "poi",
-			"elementType": "geometry",
-			"stylers": [
-				{
-					"color": "#406d80"
-				}
-			]
-		},
-		{
-			"featureType": "transit",
-			"elementType": "geometry",
-			"stylers": [
-				{
-					"color": "#406d80"
-				}
-			]
-		},
-		{
-			"elementType": "labels.text.stroke",
-			"stylers": [
-				{
-					"visibility": "on"
-				},
-				{
-					"color": "#3e606f"
-				},
-				{
-					"weight": 2
-				},
-				{
-					"gamma": 0.84
-				}
-			]
-		},
-		{
-			"elementType": "labels.text.fill",
-			"stylers": [
-				{
-					"color": "#ffffff"
-				}
-			]
-		},
-		{
-			"featureType": "administrative",
-			"elementType": "geometry",
-			"stylers": [
-				{
-					"weight": 0.8
-				},
-				{
-					"color": "#dddddd"// 1a3541
-				}
-			]
-		},
-		{
-			"elementType": "labels.icon",
-			"stylers": [
-				{
-					"visibility": "off"
-				}
-			]
-		},
-		{
-			"featureType": "poi.park",
-			"elementType": "geometry",
-			"stylers": [
-				{
-					"color": "#2c5a71"
-				}
-			]
-		}
-	];
-
 	// closure globals
 	var markerCluster = null;
 	var markers = [];
 	var map = null;
 	var infobox = null;
-	var markerImage = "assets/images/map_spot.png";
 	var lines = [];
 	var additionalMarkers = [];
 	var keepOpen = false;
@@ -151,7 +44,7 @@
 	function drawToMarker(to) {
 		var marker = new google.maps.Marker({
 			position: to,
-			icon: 'assets/images/icon_info.png',
+			icon: exports.MapSettings.markerStyles.fromMarker,
 			map: map
 		});
 		additionalMarkers.push(marker);
@@ -213,30 +106,6 @@
 
 // === CLUSTERS ===
 
-	// cluster markers
-	var clusterLevels = [{
-		url: 'assets/images/map_cluster1.png',
-		height: 20,
-		width: 20,
-		anchor: [0, 0],
-		textColor: '#000000',
-		textSize: 10
-	}, {
-		url: 'assets/images/map_cluster2.png',
-		height: 30,
-		width: 30,
-		anchor: [0, 0],
-		textColor: '#000000',
-		textSize: 11
-	}, {
-		url: 'assets/images/map_cluster3.png',
-		height: 40,
-		width: 40,
-		anchor: [0, 0],
-		textColor: '#000000',
-		textSize: 12
-	}];
-
 	function clearClusters(e) {
 		e.preventDefault();
 		e.stopPropagation();
@@ -258,7 +127,7 @@
         var marker = new google.maps.Marker({
           position: latLng,
           draggable: false,
-          icon: markerImage,
+          icon: exports.MapSettings.markerStyles.fromMarker,
           data: data[i]
         });
         google.maps.event.addListener(marker, 'mouseover', showOneOrManyMarkerInfo);
@@ -275,7 +144,7 @@
 			maxZoom: null,
 			gridSize: null,
       // averageCenter: true,
-			styles: clusterLevels
+			styles:  exports.MapSettings.clusterStyles
 		});
 		window.markerCluster = markerCluster;
 
@@ -336,7 +205,7 @@
 			scrollwheel: false
 		});
 
-		var styledMap = new google.maps.StyledMapType(styles, {name: "Styled Map"});
+		var styledMap = new google.maps.StyledMapType(exports.MapSettings.mapStyles, {name: "Styled Map"});
 		map.mapTypes.set('map_style', styledMap);
 		map.setMapTypeId('map_style');
 	}

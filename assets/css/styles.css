@@ -39,12 +39,12 @@ html, body, #map-canvas {
     box-shadow: 0 0 8px #000;
 }
 
-#table {
+#table-container {
 	z-index: 1;
-	width: 90%;
-	position: relative;
+	width: calc(100% - 40px);
 	margin-top: 20px;
-	top: 20px;
+	position: absolute;
+	bottom: 20px;
 	left: 20px;
     border: 2px solid #ffcc00;
     background: rgba(0,0,0,0.5);
@@ -123,6 +123,17 @@ table.tablesorter thead tr .headerSortDown, table.tablesorter thead tr .headerSo
 background-color: #8dbdd8;
 }
 
+#pager {
+	position: static;
+	margin: 5px auto;
+	width: 120px;
+}
+#pager .pagedisplay {
+	background: none;
+	border: none;
+	width: 40px;
+	text-align: center;
+}
 
 .input-group-double input:first-child{
     border-top-right-radius: 4px;
