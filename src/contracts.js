@@ -34,7 +34,8 @@
       document_title_town: entry[124],
       document_orig_nuts_code: GeoConverter.convertNUTS3(entry[128]),
       document_award_criteria: entry[129],
-      document_main_activities: entry[134]
+      document_main_activities: entry[134],
+      document_doc_url: entry[135]
     };
   }
 

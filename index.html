@@ -11,6 +11,8 @@
 	<body>
 		<div id="map"></div>
     <div id="container">
+
+	    <div class="logo"></div>
       <form class="clearfix">
 
 
@@ -95,63 +97,28 @@
       </form>
     </div>
 
-		<div id="pager" class="pager" style="position: relative;">
-			<form>
-				<img src="../addons/pager/icons/first.png" class="first">
-				<img src="../addons/pager/icons/prev.png" class="prev">
-				<input type="text" class="pagedisplay">
-				<img src="../addons/pager/icons/next.png" class="next">
-				<img src="../addons/pager/icons/last.png" class="last">
-				<select class="pagesize">
-					<option selected="selected" value="10">10</option>
-					<option value="20">20</option>
-					<option value="30">30</option>
-					<option value="40">40</option>
-				</select>
-			</form>
+		<div id="table-container">
+
+			<div id="table">
+			</div>
+
+			<div id="pager">
+				<form>
+					<img src="assets/images/pager_first.png" class="first">
+					<img src="assets/images/pager_prev.png" class="prev">
+					<input type="text" class="pagedisplay">
+					<img src="assets/images/pager_next.png" class="next">
+					<img src="assets/images/pager_last.png" class="last">
+					<input type="hidden" class="pagesize" value="5">
+				</form>
+			</div>
+
 		</div>
-		<div id="table">
-			<table id="dataTable" class="tablesorter"> 
-				<thead>
-					<tr>
-						<th>Last Name</th>
-						<th>First Name</th>
-						<th>Email</th>
-						<th>Due</th>
-						<th>Web Site</th>
-					</tr>
-				</thead>
-				<tbody>
-					<tr>
-						<td>Smith</td>
-						<td>John</td>
-						<td>jsmith@gmail.com</td>
-						<td>$50.00</td>
-						<td>http://www.jsmith.com</td>
-					</tr>
-					<tr>
-						<td>Bach</td>
-						<td>Frank</td>
-						<td>fbach@yahoo.com</td>
-						<td>$50.00</td>
-						<td>http://www.frank.com</td>
-					</tr>
-					<tr>
-						<td>Doe</td>
-						<td>Jason</td>
-						<td>jdoe@hotmail.com</td>
-						<td>$100.00</td>
-						<td>http://www.jdoe.com</td>
-					</tr>
-					<tr>
-						<td>Conway</td>
-						<td>Tim</td>
-						<td>tconway@earthlink.net</td>
-						<td>$50.00</td>
-						<td>http://www.timconway.com</td>
-					</tr>
-				</tbody>
-			</table>
+
+		<div class="infobox-wrapper">
+			<div id="infobox">
+				placeholder
+			</div>
 		</div>
 
 
@@ -167,9 +134,9 @@
         <script src="src/file-loader.js"></script>
         <script src="src/geo-converter.js"></script>
         <script src="src/contracts.js"></script>
+        <script src="src/map-settings.js"></script>
         <script src="src/map.js"></script>
         <script src="src/table.js"></script>
         <script src="src/main.js"></script>
 	</body>
->>>>>>> d47fc01b5a446f94a4036ac4da96c29001b91876
 </html>
