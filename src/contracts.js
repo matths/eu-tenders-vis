@@ -17,6 +17,8 @@
       contract_offers_received_meaning: entry[10],
       contract_operator_town: entry[12],
       contract_operator_official_name: entry[23],
+      contract_operator_postal_code: entry[25],
+      contract_operator_country: entry[30],
       contract_authority_town: entry[35],
       contract_contract_title: entry[42],
       contract_authority_official_name: entry[46],

@@ -75,11 +75,24 @@
 		}
 	}
 
-	function drawLineToReceipientForMarker (markers) {
+	function drawLineToReceipientForMarker (markers, cluster) {
 		for (i=0; i< markers.length; i++) {
 			var marker = markers[i];
-			var to = new google.maps.LatLng(53, 23);
-			drawLine(marker.getPosition(), to);
+			var data = marker.data;
+
+			var reciepient_zip = marker.data.contract_operator_postal_code;
+			var reciepient_country = marker.data.contract_operator_country;
+			if (reciepient_country=="DE") {
+				var location = euvis.GeoConverter.convertZIP(reciepient_zip);
+				var to = new google.maps.LatLng(location.long, location.lat);
+//				var to = new google.maps.LatLng(53, 23);
+
+				if (cluster && markers.length > 1) {
+					drawLine(cluster.getCenter(), to);
+				} else {
+					drawLine(marker.getPosition(), to);
+				}
+			}
 		}
 	}
 
@@ -127,6 +140,13 @@
 
 		if (type == 'click') {
 			showTableDataForMarkers(markers);
+		}
+
+		if (type == 'mouseover') {
+			drawLineToReceipientForMarker(markers, cluster);
+		}
+		if (type == 'mouseout') {
+			removeLineAndReceipient();
 		}
 		// return showOneOrManyMarkerInfo(e);
 		// return closeMarkerInfo(e);
